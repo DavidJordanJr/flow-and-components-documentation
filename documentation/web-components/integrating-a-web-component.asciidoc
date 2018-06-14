@@ -10,7 +10,7 @@ Web components is a standards based way to create and consume reusable component
 
 To be able to use a web component from Flow you need two things: to load the HTML/JS/CSS files needed by the component and a Java API used to configure the component and to listen to events from it.
 
-The client-side files for a web component, typically one HTML file, are available using the Bower package manager. To avoid having to use two package managers, i.e. Maven and Bower, in the same project, the files can be packaged into a jar file called a webjar, which in turn can be deployed to Maven central. Flow will automatically use webjars and server the static files to the browser with an additional possibility to serve files installed using Bower.
+The client-side files for a web component, typically one HTML file, are available using the Bower package manager. To avoid having to use two package managers, i.e. Maven and Bower, in the same project, the files can be packaged into a jar file called a webjar, which in turn can be deployed to Maven central. Flow will automatically use webjars and serve the static files to the browser with an additional possibility to serve files installed using Bower.
 
 [NOTE]
 It is only in very special cases that you need Bower or benefit from using it. In most cases it is quicker and easier to use webjars.
@@ -74,7 +74,7 @@ webjars.org contains "Bower Original WebJars" and "Bower GitHub WebJars". Always
 
 == Step 2. Creating the Java Integration
 
-While you can start from scratch and do all the things manually, it's easiest to start with the component project available at https://vaadin.com/start/v10-component. This will give you a project with Flow dependencies, import for the webjar for the selected component and a stub Java class for your web component integration. It also contains a Maven profile which will handle all things needed to deploy it to Vaadin Directory.
+While you can start from scratch and do everything manually, it's easiest to start with the component project available at https://vaadin.com/start/v10-component. This will give you a project with Flow dependencies, import for the webjar for the selected component and a stub Java class for your web component integration. It also contains a Maven profile which will handle everything needed to deploy it to Vaadin Directory.
 
 As an example, if you create a starter project for https://github.com/PolymerElements/paper-slider, the relevant parts of the generated project is
 
@@ -87,7 +87,7 @@ As an example, if you create a starter project for https://github.com/PolymerEle
 </dependency>
 ----
 
-This includes the webjar for `paper-slider`, containing all needed HTML/CSS/JS.
+This includes the webjar for `paper-slider`, containing all the needed HTML/CSS/JS.
 
 [source, xml]
 ----
@@ -128,7 +128,7 @@ mvn jetty:run
 
 in the project, it will deploy `DemoView` and show it at http://localhost:8080
 
-Now you are set to create the Java API, for more details see <<creating-java-api-for-a-web-component#,Creating Java API for a Web Component>>
+Now you can create the Java API, for more details see <<creating-java-api-for-a-web-component#,Creating Java API for a Web Component>>
 
 [NOTE]
 Some web components will not show any UI when they are just added as empty tags to the page. If the demo view is empty, check first using the browser inspector that all files were found (no 404s) and then check if you need to configure the component in some way to show up.
@@ -147,8 +147,8 @@ mvn clean install -Pdirectory
 
 This creates a zip file in the `target` directory. 
 
-Go to https://vaadin.com/directory, log in or register, and upload this zip file. Be sure to write an overview for your add-on to let others know what you can do with it, what browsers it supports etc. Then publish it and others can take your add-on into use by copying the dependency information from the add-on page in the directory.
+Go to https://vaadin.com/directory, log in or register, and upload this zip file. Be sure to write an overview for your add-on to let others know what you can do with it, what browsers it supports etc. Then publish it and others can use your add-on by copying the dependency information from the add-on page in the directory.
 
 [NOTE]
-The metadata used by Vaadin Directory is defined in `assembly/MANIFEST.MF`, based on the project's metadata. If you do changes to the project such as removing `<name></name>`, make sure you update the metadata.
+The metadata used by Vaadin Directory is defined in `assembly/MANIFEST.MF`, based on the project's metadata. If you make changes to the project, such as removing `<name></name>`, make sure you update the metadata.
 
